@@ -15,7 +15,7 @@ export async function handleSlp(block: SubstrateBlock): Promise<void> {
     (e) => e.event.section === "slp"
   ) as SubstrateEvent[];
 
-  const era=await api.query.vtokenMinting.ongoingTimeUnit({
+  const era=await api.query.vtokenMinting?.ongoingTimeUnit({
     Token: 'KSM',
   });
 
