@@ -6,3 +6,28 @@ type SlpInfo @entity {
     data: String!
     era:String!
 }
+
+type TokenStatus  @entity {
+    id: ID!
+    block_height: BigInt!
+    block_timestamp: Date!
+    farming_staking_amount: BigInt
+    system_stakable_amount: BigInt
+    system_shadow_amount: BigInt
+}
+
+type FarmingBalance  @entity {
+    id: ID!
+    block_height: BigInt!
+    block_timestamp: Date!
+    tokens_proportion:String!
+    reward_issuer:String!
+    pool_name:String!
+    pool_id:String!
+    pool_token:String!
+    token_decimals:BigInt
+    token:String!
+    token_free: BigInt
+    claim_remain:BigInt!
+    remain:BigInt!
+}

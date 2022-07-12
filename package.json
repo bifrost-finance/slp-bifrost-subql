@@ -24,5 +24,8 @@
     "@subql/cli": "latest",
     "@subql/types": "latest",
     "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.2"
   }
 }
