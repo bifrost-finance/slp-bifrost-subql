@@ -14,7 +14,7 @@ export async function handleSlp(block: SubstrateBlock): Promise<void> {
     ).toBigInt();
     const slpEvents = block.events.filter(
         (e) => e.event.section === "slp"
-    ) as SubstrateEvent[];
+    ) as unknown as SubstrateEvent[];
 
     const era = await api.query.vtokenMinting?.ongoingTimeUnit({
         Token: 'KSM',
