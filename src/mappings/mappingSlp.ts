@@ -14,7 +14,7 @@ export async function handleSlp(block: SubstrateBlock): Promise<void> {
     ).toBigInt();
     const slpEvents = block.events.filter(
         (e) => e.event.section === "slp"
-    ) as SubstrateEvent[];
+    ) as unknown as SubstrateEvent[];
 
     for (let slpEvent of slpEvents) {
         const {
@@ -101,28 +101,12 @@ export async function handleSlp(block: SubstrateBlock): Promise<void> {
 
 const renderToken = (key) => {
     switch (true) {
-        case key === '"{\\"token\\":\\"ZLK\\"}"':
-            return { label: 'ZLK', token: { 'Token': 'ZLK' }, decimals: BigInt('1000000000000000000') }
-        case key === '"{\\"native\\":\\"BNC\\"}"':
-            return { label: 'BNC', token: { 'Native': 'BNC' }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"vToken\\":\\"0\\"}"':
-            return { label: 'vDOT', token: { 'VToken': '0' }, decimals: BigInt('10000000000') }
-        case key === '"{\\"lpToken\\":[\\"KSM\\",1,\\"KSM\\",2]}"':
-            return { label: 'LP vDOT-DOT', token: { 'LPToken': ['KSM', 1, 'KSM', 2] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"KSM\\",2,\\"KSM\\",4]}"':
-            return { label: 'LP vsKSM-KSM', token: { 'LPToken': ['KSM', 2, 'KSM', 4] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"ASG\\",0,\\"KSM\\",2]}"':
-            return { label: 'LP BNC-KSM', token: { 'LPToken': ['ASG', 0, 'KSM', 2] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"KSM\\",2,\\"KUSD\\",3]}"':
-            return { label: 'LP KSM-aUSD', token: { 'LPToken': ['KSM', 2, 'KUSD', 3] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"ASG\\",0,\\"ZLK\\",2]}"':
-            return { label: 'LP BNC-ZLK', token: { 'LPToken': ['ASG', 0, 'ZLK', 2] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"KAR\\",2,\\"ZLK\\",2]}"':
-            return { label: 'LP KAR-ZLK', token: { 'LPToken': ['KAR', 2, 'ZLK', 2] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"KSM\\",2,\\"RMRK\\",2]}"':
-            return { label: 'LP KSM-RMRK', token: { 'LPToken': ['KSM', 2, 'RMRK', 2] }, decimals: BigInt('1000000000000') }
-        case key === '"{\\"lpToken\\":[\\"MOVR\\",1,\\"MOVR\\",2]}"':
-            return { label: 'LP vMOVR-MOVR', token: { 'LPToken': ['MOVR', 1, 'MOVR', 2] }, decimals: BigInt('1000000000000') }
+        case key === '"{\\"token2\\":\\"0\\"}"':
+            return { label: 'DOT', token: { 'Token2': '0' }, decimals: BigInt('10000000000') }
+        case key === '"{\\"token2\\":\\"1\\"}"':
+            return { label: 'GLMR', token: { 'Token2': '1' }, decimals: BigInt('1000000000000000000') }
+        case key === '"{\\"lpToken\\":[\\"ASG\\",8,\\"ASG\\",9]}"':
+            return { label: 'LP vDOT-DOT', token: { 'LPToken': ['ASG', 8, 'ASG', 9] }, decimals: BigInt('10000000000') }
         default:
             return { label: 'ZLK', token: { 'Token': 'ZLK' }, decimals: BigInt('1000000000000000000') }
     }
