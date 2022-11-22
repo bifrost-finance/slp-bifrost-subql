@@ -1,0 +1,7 @@
+IMAGE=harbor.liebi.com/slp/slp-bifrost-subql-dot:v1.2
+
+deploy:
+	docker build -f Dockerfile -t ${IMAGE} .
+	docker push ${IMAGE}
+	kubectl set image deploy -n slp slp-vdot-bifrost slp-vdot-bifrost=${IMAGE}
+	kubectl rollout restart deploy  -n slp  slp-vdot-bifrost
