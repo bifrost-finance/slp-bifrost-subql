@@ -32,19 +32,15 @@ export async function handleSlp(block: SubstrateBlock): Promise<void> {
         await record.save();
     }
 
-    const status = await api.query.systemStaking?.tokenStatus({ "Token2": "0" });
-
-    const tokenStatus = JSON.parse(JSON.stringify(status))
-
     const tokenStatusRecord = new TokenStatus(
         blockNumber.toString()
     );
 
     tokenStatusRecord.block_height = blockNumber;
     tokenStatusRecord.block_timestamp = block.timestamp;
-    tokenStatusRecord.farming_staking_amount = tokenStatus?.farmingStakingAmount ? BigInt(tokenStatus?.farmingStakingAmount) : BigInt(0);
-    tokenStatusRecord.system_stakable_amount = tokenStatus?.systemStakableAmount ? BigInt(tokenStatus?.systemStakableAmount) : BigInt(0);
-    tokenStatusRecord.system_shadow_amount = tokenStatus?.systemShadowAmount ? BigInt(tokenStatus?.systemShadowAmount) : BigInt(0);
+    tokenStatusRecord.farming_staking_amount = BigInt(0);
+    tokenStatusRecord.system_stakable_amount = BigInt(0);
+    tokenStatusRecord.system_shadow_amount =  BigInt(0);
 
 
     await tokenStatusRecord.save();

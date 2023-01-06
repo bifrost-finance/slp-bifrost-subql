@@ -25,9 +25,6 @@
     "@bifrost-finance/type-definitions": "latest",
     "bignumber.js": "^9.0.1"
   },
-  "dependencies": {
-    "bignumber.js": "^9.0.2"
-  },
   "exports": {
     "chaintypes": "src/chaintypes.ts"
   }
