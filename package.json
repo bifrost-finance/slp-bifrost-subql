@@ -27,5 +27,8 @@
   },
   "dependencies": {
     "bignumber.js": "^9.0.2"
+  },
+  "exports": {
+    "chaintypes": "src/chaintypes.ts"
   }
 }
